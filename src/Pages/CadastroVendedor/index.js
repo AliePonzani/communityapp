@@ -1,7 +1,7 @@
 import "../styleCadastro.css";
 import { useState } from 'react';
 
-function CadastroMorador() {
+function CadastroVendedor() {
     const [formDados, setDados] = useState({
         nome: '',
         telefone: '',
@@ -49,7 +49,7 @@ function CadastroMorador() {
         <div className="corpo">
             <div className="logoPreto"></div>
             <div className="cont">
-                <h1>CADASTRO DE MORADOR</h1>
+                <h1>CADASTRO DE VENDEDOR</h1>
                 <form >
                     <input id="nome" type="text" placeholder="Nome" value={formDados.nome} onChange={(e) => setDados((prevDados) => ({ ...prevDados, nome: e.target.value }))} />
                     <input id="telefone" type="tel" placeholder="Telefone" value={formDados.telefone} onChange={(e) => setDados((prevDados) => ({ ...prevDados, telefone: e.target.value }))} />
@@ -71,4 +71,4 @@ function CadastroMorador() {
     );
 }
 
-export default CadastroMorador;
+export default CadastroVendedor;

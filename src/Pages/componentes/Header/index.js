@@ -1,6 +1,5 @@
 import LoguinMorador from '../../Loguin_Morador';
 import LoguinVendedor from '../../Loguin_Vendedor';
-import CadastroMorador from '../../CadastroMorador';
 import './index.css';
 
 function Header() {
@@ -8,9 +7,12 @@ function Header() {
         <html>
             <div id="logoPreto"></div>
             <div className="container">
-                <LoguinMorador></LoguinMorador>
-                <LoguinVendedor></LoguinVendedor>
-                <CadastroMorador></CadastroMorador>
+                <div className='loginMorador'>
+                    <LoguinMorador></LoguinMorador>
+                </div>
+                <div className='loginVendedor'>
+                    <LoguinVendedor></LoguinVendedor>
+                </div>
             </div > {/*DIV container */}
         </html >
     )

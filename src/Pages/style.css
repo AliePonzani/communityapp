@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
 }
 
-body{
+body {
     text-align: center;
 }
 
@@ -25,55 +25,12 @@ body{
     left: 0;
     right: 0;
     text-align: center;
-    animation: exibir;
 }
 
 .botoes {
     display: flex;
     border: none;
     width: auto;
-}
-
-.clienteMorador {
-    background-color: transparent;
-    padding: 10px 25px;
-    border: none;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    cursor: auto;
-}
-.vendedorMorador {
-    background-color: transparent;
-    padding: 10px 25px;
-    border: none;
-    border-left: solid rgb(121, 120, 120);
-    border-bottom: solid rgb(121, 120, 120);
-    color: rgba(0, 0, 0, 0.272);
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.cliente {
-    background-color: transparent;
-    padding: 10px 25px;
-    border: none;
-    border-bottom: solid rgb(121, 120, 120);
-    border-right: solid rgb(121, 120, 120);
-    color: rgba(0, 0, 0, 0.272);
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-}
-.vendedor {
-    background-color: transparent;
-    padding: 10px 25px;
-    border: none;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    cursor: auto;
 }
 
 .textoLoguin {
@@ -126,3 +83,4 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
+

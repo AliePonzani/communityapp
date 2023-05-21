@@ -5,6 +5,7 @@ import LoguinMorador from './Pages/Loguin_Morador';
 import LoguinVendedor from './Pages/Loguin_Vendedor';
 import Header from './Pages/componentes/Header';
 import CadastroMorador from './Pages/CadastroMorador';
+import CadastroVendedor from './Pages/CadastroVendedor';
 
 function RouterApp() {
     return (
@@ -17,6 +18,7 @@ function RouterApp() {
                     <Route path="/LoguinMorador" element={<LoguinMorador />} />
                     <Route path="/LoguinVendedor" element={<LoguinVendedor />} />
                     <Route path='/CadastroMorador' element={<CadastroMorador />} />
+                    <Route path='/CadastroVendedor' element={<CadastroVendedor />} />
                 </Routes>
             </BrowserRouter>
         </div>
