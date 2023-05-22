@@ -1,6 +1,7 @@
 import "../styleCadastro.css";
 import { useState } from 'react';
 
+
 function CadastroMorador() {
     const [formDados, setDados] = useState({
         nome: '',
@@ -44,6 +45,8 @@ function CadastroMorador() {
             }
         }
     }
+
+    
 
     return (
         <div className="corpo">
