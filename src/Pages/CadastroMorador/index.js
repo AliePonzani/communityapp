@@ -16,7 +16,8 @@ function CadastroMorador() {
         numero: '',
         blocoTorre: '',
         apartamento: '',
-        nomeCondominio: ''
+        nomeCondominio: '',
+        senha: ''
     });
 
     function buscarCep() {
@@ -46,14 +47,46 @@ function CadastroMorador() {
         }
     }
 
-    
+    function enviarDados(event) {
+        event.preventDefault(); // Impede o comportamento padrão do formulário de recarregar a página
+        const { nome, email, telefone } = formDados;
+        const data = {
+            nome: nome,
+            email: email,
+            telefone: telefone
+          };
+
+        fetch('http://localhost:3333/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Dados enviados com sucesso!');
+                    setDados({
+                        nome: '',
+                        email: '',
+                        senha: ''
+                    });
+                } else {
+                    alert('Erro ao enviar os dados. Tente novamente!');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao enviar os dados. Tente novamente!'+error);
+            });
+    }
 
     return (
         <div className="corpo">
             <div className="logoPreto"></div>
             <div className="cont">
                 <h1>CADASTRO DE MORADOR</h1>
-                <form >
+                <form onSubmit={enviarDados}>
                     <input id="nome" type="text" placeholder="Nome" value={formDados.nome} onChange={(e) => setDados((prevDados) => ({ ...prevDados, nome: e.target.value }))} />
                     <input id="telefone" type="tel" placeholder="Telefone" value={formDados.telefone} onChange={(e) => setDados((prevDados) => ({ ...prevDados, telefone: e.target.value }))} />
                     <input id="email" type="email" placeholder="E-mail" value={formDados.email} onChange={(e) => setDados((prevDados) => ({ ...prevDados, email: e.target.value }))} />
@@ -67,7 +100,7 @@ function CadastroMorador() {
                     <input id="blocoTorre" type="text" placeholder="Bloco/Torre" value={formDados.blocoTorre} onChange={(e) => setDados((prevDados) => ({ ...prevDados, blocoTorre: e.target.value }))} />
                     <input id="apartamento" type="number" placeholder="Apartamento" value={formDados.apartamento} onChange={(e) => setDados((prevDados) => ({ ...prevDados, apartamento: e.target.value }))} />
                     <input id="nomeCondominio" type="text" placeholder="Qual o nome do seu condomínio" value={formDados.nomeCondominio} onChange={(e) => setDados((prevDados) => ({ ...prevDados, nomeCondominio: e.target.value }))} />
-                    <button type="submit">Salvar</button>
+                    <button type="submit">Salvar</button> <input id="senha" type="password" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados((prevDados) => ({ ...prevDados, senha: e.target.value }))} />
                 </form>
             </div>
         </div>
