@@ -7,7 +7,7 @@ function CadastroMorador() {
         nome: '',
         telefone: '',
         email: '',
-        dataNac: '',
+        dataNasc: '',
         cep: '',
         cidade: '',
         bairro: '',
@@ -32,12 +32,13 @@ function CadastroMorador() {
             req.onload = function () {
                 if (req.status === 200) {
                     let logradouro = JSON.parse(req.response);
-                    setDados({
+                    setDados(prevDados => ({
+                        ...prevDados,
                         logradouro: logradouro.street,
                         cidade: logradouro.city,
                         estado: logradouro.state,
                         bairro: logradouro.neighborhood
-                    });
+                    }));
                 } else if (req.status === 404) {
                     alert("cep inválido");
                 } else {
@@ -47,28 +48,101 @@ function CadastroMorador() {
         }
     }
 
+    /* async function enviarEndereco(e) {
+        e.preventDefault();
+
+        // Obtém os dados do logradouro, cidade, estado e bairro
+        const data = formDados
+
+        // Cria um objeto com os dados a serem enviados para a API
+        const dados = {
+            nome: data.nome,
+            telefone: data.telefone,
+            email: data.email,
+            dataNasc: data.dataNasc,
+            cep: data.cep,
+            cidade: data.cidade,
+            bairro: data.bairro,
+            logradouro: data.logradouro,
+            estado: data.estado,
+            numero: data.numero,
+            blocoTorre: data.blocoTorre,
+            apartamento: data.apartamento,
+            nomeCondominio: data.nomeCondominio,
+            senha: data.senha
+        };
+
+        // Constrói a URL para a requisição POST
+        const url = "http://localhost:3333/cadastroMorador";
+
+        // Cria uma nova instância de XMLHttpRequest
+        const req = new XMLHttpRequest();
+
+        // Abre uma conexão HTTP POST para a URL especificada
+        req.open("POST", url);
+
+        // Define o cabeçalho da requisição para indicar que os dados serão enviados no formato JSON
+        req.setRequestHeader("Content-Type", "application/json");
+
+        // Envia a requisição para o servidor, convertendo o objeto de dados em JSON
+        req.send(JSON.stringify(dados));
+
+        // Define uma função para ser executada quando a resposta da requisição é carregada
+        req.onload = function () {
+            // Verifica o status da resposta
+            if (req.status === 201) {
+                // Exibe uma mensagem informando que os dados foram enviados com sucesso
+                alert("Dados enviados com sucesso!");
+            } else {
+                // Exibe uma mensagem informando que ocorreu um erro na requisição
+                alert("Erro ao enviar os dados, tente novamente!");
+            }
+        }
+    } */
+
+
 
 
     async function enviarDados(event) {
+
+        const data = formDados
+
+        // Cria um objeto com os dados a serem enviados para a API
+        const dados = {
+            nome: data.nome,
+            telefone: data.telefone,
+            email: data.email,
+            dataNasc: data.dataNasc,
+            cep: data.cep,
+            cidade: data.cidade,
+            bairro: data.bairro,
+            logradouro: data.logradouro,
+            estado: data.estado,
+            numero: data.numero,
+            blocoTorre: data.blocoTorre,
+            apartamento: data.apartamento,
+            nomeCondominio: data.nomeCondominio,
+            senha: data.senha
+        };
+        event.preventDefault();
+
         if (formDados.email === "") {
             alert("email vazio")
         } else {
             alert(formDados.email)
         }
-        event.preventDefault();
-
         try {
-            const response = await fetch('http://localhost:3333/cadastroUsuario', {
+            const response = await fetch('http://localhost:3333/cadastroMorador', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formDados)
+                body: JSON.stringify(dados)
             });
             const aux = response.json();
             console.log(response);
             console.log(aux);
-
+            console.table(formDados);
         } catch {
             console.error('Ocorreu um erro ao fazer login:');
         }
@@ -84,9 +158,9 @@ function CadastroMorador() {
                 <form onSubmit={enviarDados}>
                     <input id="nome" type="text" placeholder="Nome" value={formDados.nome} onChange={(e) => setDados({ ...formDados, nome: e.target.value })} />
                     <input id="telefone" type="text" placeholder="Telefone" value={formDados.telefone} onChange={(e) => setDados({ ...formDados, telefone: e.target.value })} />
-                    <input id="email" type="text" placeholder="E-mail" value={formDados.email} onChange={(e) => setDados({ ...formDados, email: e.target.value })} />
-                    <input id="dataNac" type="text" placeholder="Data de Nacsimento" value={formDados.dataNac} onChange={(e) => setDados({ ...formDados, dataNac: e.target.value })} />
-                    <input id="cep" type="text" maxLength="8" placeholder="Cep" onChange={(e) => setDados({ ...formDados, cep: e.target.value })} onBlur={buscarCep} />
+                    <input id="email" type="email" placeholder="E-mail" value={formDados.email} onChange={(e) => setDados({ ...formDados, email: e.target.value })} />
+                    <input id="dataNasc" type="date" placeholder="Data de Nascimento" value={formDados.dataNasc} onChange={(e) => setDados({ ...formDados, dataNasc: e.target.value })} />
+                    <input id="cep" type="text" placeholder="Cep" maxLength={8} value={formDados.cep} onChange={(e) => setDados({ ...formDados, cep: e.target.value })} onBlur={buscarCep} />
                     <input id="cidade" type="text" placeholder="Cidade" value={formDados.cidade} onChange={(e) => setDados({ ...formDados, cidade: e.target.value })} />
                     <input id="bairro" type="text" placeholder="Bairro" value={formDados.bairro} onChange={(e) => setDados({ ...formDados, bairro: e.target.value })} />
                     <input id="logradouro" type="text" placeholder="Logradouro" value={formDados.logradouro} onChange={(e) => setDados({ ...formDados, logradouro: e.target.value })} />
@@ -95,7 +169,7 @@ function CadastroMorador() {
                     <input id="blocoTorre" type="number" placeholder="Bloco/Torre" value={formDados.blocoTorre} onChange={(e) => setDados({ ...formDados, blocoTorre: e.target.value })} />
                     <input id="apartamento" type="number" placeholder="Apartamento" value={formDados.apartamento} onChange={(e) => setDados({ ...formDados, apartamento: e.target.value })} />
                     <input id="nomeCondominio" type="text" placeholder="Qual o nome do seu condomínio" value={formDados.nomeCondominio} onChange={(e) => setDados({ ...formDados, nomeCondominio: e.target.value })} />
-                    <input id="senha" type="text" placeholder="Senha" />
+                    <input id="senha" type="text" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados({ ...formDados, senha: e.target.value })} />
                     <button type="submit">Salvar</button>
                 </form>
             </div>
