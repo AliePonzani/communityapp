@@ -10,17 +10,33 @@ function LoguinVendedor() {
     const [senha, setSenha] = useState('');
     const navigate = useNavigate();
 
-    function validarDados() {
-        const dados = { usuario, senha };
-        const emailValido = 'teste@teste.com';
-        const senhaValida = '12345';
+    async function validarDados(evento) {
+        evento.preventDefault()
+        try {
+            const response = await fetch('http://localhost:3333/loginVendedor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email:usuario, senha:senha })
+            })
+            const data = await response.json();
+            if (response.ok && data.nomeUsuario) {
+                
+                navigate("/TelaVendedor");
 
-        if (dados.usuario === emailValido && dados.senha === senhaValida) {
-            alert('Usúario e/ou Senha do Vendedor são válidos');
+            } else {
+                alert("Usuário ou senha inválidos!")
+            }
+
+            console.log(data.nome);
+            console.log(data.name)
+            console.log(data)
+        } catch (error) {
+            console.error('Ocorreu um erro ao fazer login:', error);
         }
-        else {
-            alert('Usúario e/ou Senha do Vendedor são inválidos');
-        }
+
+        console.log('botao clicado => ', usuario, senha)
     }
 
     return (
@@ -28,15 +44,15 @@ function LoguinVendedor() {
             <div className="logoBranco"></div>
             <div className="loguinInicial">
                 <div className="botoes">
-                    <Link className="cliente" to="/LoguinMorador">MORADOR</Link>
-                    <button className="vendedor" to="/LoguinVendedor">VENDEDOR</button>
+                    <Link className="cliente" to="/LoginMorador">MORADOR</Link>
+                    <button className="vendedor">VENDEDOR</button>
                 </div>
                 <h4 className="textoLoguin">Olá!<br />Seja bem vindo de volta</h4>
                 <p className="texto2">Faça o loguin agora</p>
-                <input class="usuario" type="email" placeholder="Usarname" value={usuario} onChange={e => setUsuario(e.target.value)}></input><br />
-                <input class="senha" type="password" placeholder="Password" value={senha} onChange={e => setSenha(e.target.value)}></input><br />
-                <button class="esqueceuSenha">Esqueceu a senha?</button><br />
-                <button class="loguin" onClick={validarDados}>Loguin</button><br />
+                <input className="usuario" type="email" placeholder="Usarname" value={usuario} onChange={e => setUsuario(e.target.value)}></input><br />
+                <input className="senha" type="password" placeholder="Password" value={senha} onChange={e => setSenha(e.target.value)}></input><br />
+                <button className="esqueceuSenha">Esqueceu a senha?</button><br />
+                <button className="loguin" onClick={validarDados}>Loguin</button><br />
                 <div>
                     <button className="criarConta" type="button" onClick={e => {navigate('/CadastroVendedor')}}>Criar conta</button>
                 </div>

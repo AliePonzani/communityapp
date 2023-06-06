@@ -56,7 +56,8 @@ button {
 }
 
 #nome,
-#email {
+#email
+ {
     grid-column: 1/3;
 }
 

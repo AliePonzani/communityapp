@@ -4,22 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CadastroMorador() {
     const navigate = useNavigate();
-    const [formDados, setDados] = useState({
-        nome: '',
-        telefone: '',
-        email: '',
-        dataNac: '',
-        cep: '',
-        cidade: '',
-        bairro: '',
-        logradouro: '',
-        estado: '',
-        numero: '',
-        blocoTorre: '',
-        apartamento: '',
-        nomeCondominio: '',
-        senha: ''
-    });
+    const [formDados, setDados] = useState({});
 
     function buscarCep() {
         const cep = formDados.cep;
@@ -43,7 +28,7 @@ function CadastroMorador() {
                 } else if (req.status === 404) {
                     alert("cep inválido");
                 } else {
-                    alert("Erro ao fazer a inquisição, tente novamente!");
+                    alert("Erro ao fazer a inquisição, tente novamente mais tarde!");
                 }
             }
         }
@@ -99,7 +84,7 @@ function CadastroMorador() {
                     senha: ''
                 });
 
-                navigate('/LoguinMorador');
+                navigate('/LoginMorador');
 
             }
         } catch {

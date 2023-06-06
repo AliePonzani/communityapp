@@ -8,10 +8,10 @@ function Header() {
             <div id="logoPreto"></div>
             <div className="container">
                 <div className='loginMorador'>
-                    <LoguinMorador></LoguinMorador>
+                    <LoguinMorador/>
                 </div>
                 <div className='loginVendedor'>
-                    <LoguinVendedor></LoguinVendedor>
+                    <LoguinVendedor/>
                 </div>
             </div > {/*DIV container */}
         </html >
