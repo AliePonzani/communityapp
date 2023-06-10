@@ -76,10 +76,10 @@ button {
 .logoPreto{
     position: absolute;
     top: 0;
-    left: 15px;
-    width: 300px;
+    left: 10px;
+    width: 250px;
     height: 80px;
     background-image: url("logoPreto.png");
-    background-size: 300px;
+    background-size: 250px;
     background-repeat: no-repeat;
 }

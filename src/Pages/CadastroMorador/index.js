@@ -83,7 +83,7 @@ function CadastroMorador() {
                     nomeCondominio: '',
                     senha: ''
                 });
-
+                alert("Usuario cadastrado com sucesso!")
                 navigate('/LoginMorador');
 
             }
@@ -111,7 +111,7 @@ function CadastroMorador() {
                     <input id="blocoTorre" type="number" placeholder="Bloco/Torre" value={formDados.blocoTorre} onChange={(e) => setDados({ ...formDados, blocoTorre: e.target.value })} />
                     <input id="apartamento" type="number" placeholder="Apartamento" value={formDados.apartamento} onChange={(e) => setDados({ ...formDados, apartamento: e.target.value })} />
                     <input id="nomeCondominio" type="text" placeholder="Qual o nome do seu condomínio" value={formDados.nomeCondominio} onChange={(e) => setDados({ ...formDados, nomeCondominio: e.target.value })} />
-                    <input id="senha" type="text" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados({ ...formDados, senha: e.target.value })} />
+                    <input id="senha" type="password" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados({ ...formDados, senha: e.target.value })} />
                     <button type="submit">Salvar</button>
                 </form>
             </div>

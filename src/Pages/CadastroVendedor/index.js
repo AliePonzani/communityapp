@@ -79,9 +79,8 @@ function CadastroVendedor() {
                     complemento: '',
                     senha: ''
                 });
-
+                alert("Usuario cadastrado com sucesso!")
                 navigate('/LoginVendedor');
-
             }
         } catch {
             console.error('Ocorreu um erro ao fazer o cadastro: '+ Error);
@@ -108,7 +107,7 @@ function CadastroVendedor() {
                     <input id="estado" type="text" placeholder="Estado" value={formDados.estado} onChange={(e) => setDados({ ...formDados, estado: e.target.value })} />
                     <input id="numero" type="number" placeholder="Número" value={formDados.numero} onChange={(e) => setDados({ ...formDados, numero: e.target.value })} />
                     <input id="complemento" type="text" placeholder="Complemento" value={formDados.complemento} onChange={(e) => setDados({ ...formDados, complemento: e.target.value })} />
-                    <input id="senha" type="text" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados({ ...formDados, senha: e.target.value })} />
+                    <input id="senha" type="password" placeholder="Senha" value={formDados.senha} onChange={(e) => setDados({ ...formDados, senha: e.target.value })} />
                     <button type="submit">Salvar</button>
                 </form>
             </div>
