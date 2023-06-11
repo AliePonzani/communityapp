@@ -14,7 +14,7 @@ function TelaformDados() {
   useEffect(() => {
     const email = location.state && location.state.email;
     if (email !== "") {
-      let url = `http://localhost:3333/formDadoses/${email}`;
+      let url = `http://localhost:3333/vendedores/${email}`;
       let req = new XMLHttpRequest();
       req.open("GET", url);
       req.send();
@@ -31,7 +31,7 @@ function TelaformDados() {
           }));
 
         } else if (req.status === 404) {
-          alert("E-mail inválido");
+          console.log(Error)
         } else {
           alert(
             "Erro ao fazer a requisição, tente novamente mais tarde!"
